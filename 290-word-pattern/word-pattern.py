@@ -15,12 +15,12 @@ class Solution:
             return False
 
         for i in range(len(pattern)):
-            if pattern[i] in wordmap: 
+            if pattern[i] in wordmap:
                 if wordmap[pattern[i]] != s[i]:
                     return False
                     
             else: 
-                if s[i] in str_set:
+                if s[i] in str_set: # If the word is already in the set, then it has already been mapped to. Therefore, the pattern is broken
                     return False
                     
                 wordmap[pattern[i]] = s[i]
