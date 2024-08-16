@@ -1,31 +1,30 @@
 class Solution:
     def lemonadeChange(self, bills: List[int]) -> bool:
         
-        change = {  5: 0, 
-                    10: 0, 
-                    20: 0
-        }
+        fives = 0
+        tens = 0
+        # Dont need to keep track of 20s bc we can't give 20s in change
 
         for i in range(len(bills)):
             # print(bills[i])
             if bills[i] == 5:
-                change[5] += 1
+                fives += 1
             elif bills[i] == 10:
-                change[10] += 1
-                change[5] -= 1
+                tens += 1
+                fives -= 1
             elif bills[i] == 20:
-                if change[10] < 1:
-                    change[5] -= 3
-                    change[10] -= 0
-                    change[20] += 1
+                if tens < 1:
+                    fives -= 3
+                    # tens -= 0
+                    # change[20] += 1 
                 else:
-                    change[5] -= 1
-                    change[10] -= 1
-                    change[20] += 1
+                    fives -= 1
+                    tens -= 1
+                    # change[20] += 1
             
             # print(change.items())
 
-            if change[5] < 0 or change[10] < 0 or change[20] < 0:
+            if fives < 0 or tens < 0:
                 return False
             
         return True
