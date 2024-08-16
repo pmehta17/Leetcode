@@ -5,14 +5,14 @@ class Solution:
         tens = 0
         # Dont need to keep track of 20s bc we can't give 20s in change
 
-        for i in range(len(bills)):
+        for bill in bills:
             # print(bills[i])
-            if bills[i] == 5:
+            if bill == 5:
                 fives += 1
-            elif bills[i] == 10:
+            elif bill == 10:
                 tens += 1
                 fives -= 1
-            elif bills[i] == 20:
+            elif bill == 20:
                 if tens < 1:
                     fives -= 3
                     # tens -= 0
