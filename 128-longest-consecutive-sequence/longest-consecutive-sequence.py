@@ -1,6 +1,6 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        
+    
         ## Questions:
         ## Are all numbers positive? How would we handle negative numbers?
         ## Decimals? 
