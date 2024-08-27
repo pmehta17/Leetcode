@@ -1,33 +1,15 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-    
-        ## Questions:
-        ## Are all numbers positive? How would we handle negative numbers?
-        ## Decimals? 
 
-        ## Brute force 
-        ## sort the list. Check if next number is current + 1. 
+        numSet = set(nums)
+        longest = 0
 
-        if len(nums) == 0:
-            return 0
-            
-        nums.sort()
-        
-        max_count = 1
-        current_count = 1
-
-        # Iterate through the sorted list
-        for i in range(1, len(nums)):
-            if nums[i] == nums[i - 1]:
-                # Skip duplicates
-                continue
-            elif nums[i] == nums[i - 1] + 1:
-                # Increment the current sequence count
-                current_count += 1
-            else:
-                # Reset count for a new sequence
-                max_count = max(max_count, current_count)
-                current_count = 1
-
-        # Final check to ensure the last sequence is considered
-        return max(max_count, current_count)
+        for n in numSet:
+            # check if its the start of a sequence
+            if (n - 1) not in numSet:
+                length = 1
+                while (n + length) in numSet:
+                    length += 1
+                longest = max(length, longest)
+        return longest
+        # Time complexity: O(n)
