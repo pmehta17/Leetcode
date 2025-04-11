@@ -1,6 +1,42 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
 
+        if len(s) == 0 or len(s) == 1: 
+            return len(s)
+
+        l = 0 # left pointer
+        chars = set() # set of characters currently in our string
+        max_len = 0 # max length
+
+        # iterate thru the string
+        for r in range(len(s)): 
+            # current char in sting
+            while s[r] in chars: 
+                # remove left 
+                chars.remove(s[l]) 
+                l += 1 
+
+            # current char not in string
+            chars.add(s[r])
+            max_len = max(max_len, (r-l+1))
+        return max_len
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         # edge case for empty string or only one char string
         if len(s) == 0 or len(s) == 1: 
             return len(s)
