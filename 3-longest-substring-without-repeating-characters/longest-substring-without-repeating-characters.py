@@ -1,48 +1,34 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
 
+        max_len = 0
 
-        if len(s) == 0 or len(s) == 1:
-            return len(s)
+        subseq = []
+        idx = 0
 
-        ans = 0
-        letter_set = set()
-        l = 0
+        for char in s:
+            # char not in subseq, add it
+            if char not in subseq:
+                subseq.append(char)
 
-        for r in range(len(s)):
-            while s[r] in letter_set:
-                letter_set.remove(s[l])
-                l += 1
-            letter_set.add(s[r])
-            ans = max(ans, r - l + 1)
+            # char is in subseq, remove from beginning until we get to char
+            else:
+                popped = ""
+                while popped != char:
+                    popped = subseq.pop(0)
+                # after removing first instance of char, add 
+                subseq.append(char)
 
-        return ans
-
-
-        # if len(s) == 0 or len(s) == 1:
-        #     return len(s)
-
-        # ans = 0
-
-        # l = 0
-        # r = 1
-
-        # while r < len(s):
-        #     letter_set = set()
-        #     letter_set.add(s[l])
-        #     temp_str = ""
-        #     print(r)
-        #     while r < len(s) and s[r] not in letter_set:
-        #         letter_set.add(s[r])
-        #         r += 1
-        #         print(r)
-        #     temp_str = s[l:r]
-        #     print(temp_str)
-
-        #     if len(temp_str) > ans:
-        #         ans = len(temp_str)
+            temp_len = len(subseq)
+            max_len = max(temp_len, max_len)
             
-        #     l += 1
-        #     r = l + 1
+
+            print(subseq)
+        return max_len
             
-        # return ans
+
+            
+            
+
+
+
