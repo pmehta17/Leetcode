@@ -7,3 +7,13 @@ class Solution:
                 if nums[i] + nums[j] == target:
                     return [i,j]
 	
+        map = {}
+
+        for i in range(len(nums)):
+            if target - nums[i] in map:
+                return [i, map[target - nums[i]]]
+            else:
+                map[nums[i]] = i
+        
+
+        
