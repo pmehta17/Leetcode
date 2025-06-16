@@ -1,13 +1,8 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
 
-        # return len(set(nums)) != len(nums)
+        # set doesn't allow for duplicates.
 
-        map = {}
-        for num in nums:
-            if num in map:
-                return True
-            else:
-                map[num] = 1
-
-        return False
+        s = set(nums)
+        return len(s) != len(nums)
+        
