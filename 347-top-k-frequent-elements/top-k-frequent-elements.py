@@ -1,23 +1,19 @@
-from collections import defaultdict
-
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-
-        count = {}
-        freq = [[] for i in range(len(nums)+1)] # index represents frequency, array at that index represents numbers with that frequency
-
-        for n in nums:
-            count[n] = count.get(n, 0) + 1
         
-        for n, c in count.items():
-            freq[c].append(n)
+
+        # 1. add numbers to hashamap
+        freq_map = Counter(nums)
+        print(freq_map)
 
 
-        ans = []
-        for i in range(len(freq) -1, 0, -1): # Iterate in reverse order
-            for n in freq[i]:
-                ans.append(n)
-                if len(ans) == k:
-                    return ans
-
-    # O(n)
+        heap = []
+        for num, freq in freq_map.items():
+            heapq.heappush(heap, (freq, num))
+            if len(heap) > k:
+                heapq.heappop(heap)
+        
+        ans = [] 
+        for _ in range(k):
+            ans.append(heapq.heappop(heap)[1])
+        return ans
