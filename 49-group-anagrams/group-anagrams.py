@@ -1,20 +1,26 @@
-from collections import defaultdict
-
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+         
+         # all anagrams have same letter maps
 
-        # Hashmap; Key = count of each character, value = list of words
+         # hashmap. key = string with letter freqs, value = list of words 
 
-        wordmap = defaultdict(list)        
+         # create key 
 
-        for word in strs:
-            char_freq = [0]*26
-            for c in word.lower():
-                char_freq[ord(c) - ord("a")] += 1
-            wordmap[tuple(char_freq)].append(word)
-            # char_str = ''.join(str(x) for x in char_freq)
-            # wordmap[char_str] += word
-            # print(word)
-            # print(wordmap.items())
+        anagrams = {}
+        for word in strs: 
 
-        return wordmap.values()
+            arr = self.charmap(word)
+            if arr in anagrams:
+                anagrams[arr].append(word)
+            else:
+                anagrams[arr] = [word]
+        
+        return list(anagrams.values())
+        
+    def charmap(self, word):
+    
+        arr = [0] * 26
+        for char in word: 
+            arr[ord(char) - ord("a")] += 1
+        return tuple(arr)  # key change: use tuple instead of string
