@@ -1,19 +1,16 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-
-        # brute force:
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                if nums[i] + nums[j] == target:
-                    return [i,j]
-	
-        map = {}
-
-        for i in range(len(nums)):
-            if target - nums[i] in map:
-                return [i, map[target - nums[i]]]
-            else:
-                map[nums[i]] = i
-        
+        # find two numbers in the array that add to target and return indices
 
         
+
+        # create lookup map 
+        indices = {}
+        for idx, num in enumerate(nums):
+            indices[num] = idx # to find numbers by the value 
+
+        for i, n in enumerate(nums):
+            diff = target - n # what we are looking for 
+
+            if diff in indices and indices[diff]!=i:
+                return [i, indices[diff]]
