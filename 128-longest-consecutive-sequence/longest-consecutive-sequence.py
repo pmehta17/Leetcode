@@ -1,30 +1,28 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        
+        
+        ct = 0 # keep longest sequence count 
+        nums_set = set(nums)
 
-        # Solution: 
-        # Add all values to a set. If it the start of a sequence, count the number of new numbers. 
 
-        # Questions
-        # 1. How do we handle duplicates?
-        # 2. Decimals and negative numbers?
+        for num in nums_set: 
+            streak = 1 # temp streak count
+            if num - 1 in nums_set: 
+                continue # not start of sequence
 
-        numSet = set(nums)
-        longest = 0
-
-        for num in numSet:
             
-            
-            # Start of sequence
-            if (num - 1) not in numSet:
-                length = 1
-                while (num + length) in numSet:
-                    length += 1  
-            
-            # not start of sequence
-            else:
-                continue       
+            current = num
+            while current + 1 in nums_set:
+                current += 1
+                streak += 1 
+        
+            ct = max(streak, ct)
 
-            longest = max(longest, length)
+        return ct
+                
+            
 
-        return longest
+
+            
     
