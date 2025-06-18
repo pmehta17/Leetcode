@@ -17,8 +17,8 @@ class Solution:
         while curr: 
             if curr in seen:
                 return True # cycle; revisiting same node again
-            seen.add(curr) 
-            curr = curr.next
+            seen.add(curr) # add node to set
+            curr = curr.next # move to next node 
         return False
 
             
