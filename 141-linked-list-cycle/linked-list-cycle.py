@@ -11,15 +11,32 @@ class Solution:
         # Time complexity: O(n)
         # Space complexity: O(n)
 
-        seen = set()
-        curr = head
+        # seen = set()
+        # curr = head
 
-        while curr: 
-            if curr in seen:
-                return True # cycle; revisiting same node again
-            seen.add(curr) # add node to set
-            curr = curr.next # move to next node 
-        return False
+        # while curr: 
+        #     if curr in seen:
+        #         return True # cycle; revisiting same node again
+        #     seen.add(curr) # add node to set
+        #     curr = curr.next # move to next node 
+        # return False
+
+        # Method 2: Fast and slow Pointer 
+        # Time complexity: O(n)
+        # Space complexity: O(1)
+
+        
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            slow = slow.next
+
+            fast = fast.next.next
+
+            if slow == fast:
+                return True
+
 
             
 
