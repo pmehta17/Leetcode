@@ -10,7 +10,7 @@ class Solution:
         ans = []
         
         for i in range(k):
-            dist, x, y = heapq.heappop(minHeap)
+            _ , x, y = heapq.heappop(minHeap)
             ans.append([x, y])
 
         return ans
