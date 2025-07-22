@@ -10,6 +10,6 @@ class Solution:
                 temp_profit = prices[r] - prices[l]
                 profit = max(profit, temp_profit)
             else: 
-                l = r
+                l = r # found better time to buy stock 
             r += 1
         return profit 
