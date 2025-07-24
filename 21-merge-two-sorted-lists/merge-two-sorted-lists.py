@@ -9,33 +9,33 @@ class Solution:
 
         ## Iterative 
         
-        dummy = node = ListNode()
+        # dummy = node = ListNode()
 
-        while list1 and list2:
-            if list1.val < list2.val:
-                node.next = list1
-                list1 = list1.next
+        # while list1 and list2:
+        #     if list1.val < list2.val:
+        #         node.next = list1
+        #         list1 = list1.next
 
-            else: 
-                node.next = list2
-                list2 = list2.next
-            node = node.next
+        #     else: 
+        #         node.next = list2
+        #         list2 = list2.next
+        #     node = node.next
 
-        node.next = list1 or list2 # when one list is complete, autofill with remainder of the other
+        # node.next = list1 or list2 # when one list is complete, autofill with remainder of the other
 
-        return dummy.next 
+        # return dummy.next 
 
         # Recursive
 
         # Base cases: one list is empty
-        # if list1 is None: 
-        #     return list2
-        # if list2 is None: 
-        #     return list1
+        if list1 is None: 
+            return list2
+        if list2 is None: 
+            return list1
 
-        # if list1.val <= list2.val: 
-        #     list1.next = self.mergeTwoLists(list1.next, list2)
-        #     return list1
-        # else:
-        #     lsit2.next = self.merge(twoLists(list2.next, list1))
-        #     return list2
+        if list1.val <= list2.val: 
+            list1.next = self.mergeTwoLists(list1.next, list2)
+            return list1
+        else:
+            list2.next = self.mergeTwoLists(list2.next, list1)
+            return list2
