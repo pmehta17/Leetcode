@@ -8,8 +8,7 @@ class Solution:
         for p, s in sorted(pair)[::-1]: # reverse sorted
             stack.append((target - p) / s)
 
-            if stack: 
-                if len(stack) >= 2 and stack[-1] <= stack[-2]: 
-                    stack.pop()
+            if len(stack) >= 2 and stack[-1] <= stack[-2]: 
+                stack.pop()
 
         return len(stack)
