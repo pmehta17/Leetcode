@@ -5,26 +5,37 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        # create a new linked list ans 
 
-        dummy = ListNode()
-        tail = dummy 
 
-        # compare head of list1 and list2
-        while list1 and list2: 
+        ## Iterative 
+        
+        dummy = node = ListNode()
+
+        while list1 and list2:
             if list1.val < list2.val:
-                tail.next = list1 
+                node.next = list1
                 list1 = list1.next
+
             else: 
-                tail.next = list2
+                node.next = list2
                 list2 = list2.next
-        
-            tail = tail.next
-        
-        tail.next = list1 if list1 else list2
+            node = node.next
 
-        return dummy.next
+        node.next = list1 or list2 # when one list is complete, autofill with remainder of the other
 
-        # add smaller to ans, remove from original list 
+        return dummy.next 
 
-        # repeat until list1 and list2 empty 
+        # Recursive
+
+        # Base cases: one list is empty
+        # if list1 is None: 
+        #     return list2
+        # if list2 is None: 
+        #     return list1
+
+        # if list1.val <= list2.val: 
+        #     list1.next = self.mergeTwoLists(list1.next, list2)
+        #     return list1
+        # else:
+        #     lsit2.next = self.merge(twoLists(list2.next, list1))
+        #     return list2
