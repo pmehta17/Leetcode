@@ -1,21 +1,10 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-
-        # Bit manipulation
-        res = 0
-
-        for n in nums:
-            res = res ^ n
-        return res
         
 
-        ## Hash set solution
-        seen = set()
+        ans = 0
 
-        for n in nums:
-            if n not in seen: 
-                seen.add(n)
-            else:
-                seen.remove(n)
+        for n in nums: 
+            ans = n ^ ans
 
-        return seen.pop()
+        return ans
