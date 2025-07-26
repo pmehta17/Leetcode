@@ -7,24 +7,43 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
 
-        # Iterative BFS - come back to understand keeping track of levels
+
+        ###### ITERATIVE DFS ############################
+        # pre order
 
         if not root: 
             return 0
 
-        level = 0
-        queue = deque([root])
+        stack = [[root, 1]]
+        ans = 1
 
-        while queue: 
-            for i in range(len(queue)): 
-                node = queue.popleft()
-                if node.left: 
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
+        while stack: 
+            node, d = stack.pop()
+            if node: 
+                ans = max(ans, d)
+                stack.append([node.left, d + 1])
+                stack.append([node.right, d + 1])
+        return ans
 
-            level += 1
-        return level
+
+        # Iterative BFS - come back to understand keeping track of levels
+
+        # if not root: 
+        #     return 0
+
+        # level = 0
+        # queue = deque([root])
+
+        # while queue: 
+        #     for i in range(len(queue)): 
+        #         node = queue.popleft()
+        #         if node.left: 
+        #             queue.append(node.left)
+        #         if node.right:
+        #             queue.append(node.right)
+
+        #     level += 1
+        # return level
 
 
         # Recursive DFS
