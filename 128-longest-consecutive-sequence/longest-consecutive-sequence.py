@@ -1,28 +1,27 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        
-        
-        ct = 0 # keep longest sequence count 
+
         nums_set = set(nums)
+        max_ct = 0
 
 
-        for num in nums_set: 
-            streak = 1 # temp streak count
-            if num - 1 in nums_set: 
-                continue # not start of sequence
+        for n in nums_set: 
+            if n - 1 in nums_set:
+                continue
+
+            c = n
+            temp_ct = 1
+
+            while c + 1 in nums_set:
+                temp_ct += 1
+                c += 1
+            max_ct = max(temp_ct, max_ct)
+
 
             
-            current = num
-            while current + 1 in nums_set:
-                current += 1
-                streak += 1 
+        return max_ct
+
+
+
+
         
-            ct = max(streak, ct)
-
-        return ct
-                
-            
-
-
-            
-    
